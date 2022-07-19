@@ -8,6 +8,6 @@ class TeamMember(models.Model):
     phoneNum = PhoneNumberField()
     role = models.BooleanField()
     
-    # return true for manager, false for regular
+    # return 'Regular' if false, 'Admin is true'
     def getRole(self):
-        return self.role
+        return ("Regular", "Admin")[self.role]
