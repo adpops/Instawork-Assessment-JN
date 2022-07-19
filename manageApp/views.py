@@ -3,5 +3,6 @@ from .models import TeamMember
 
 def index(request):
     memberLst = TeamMember.objects.all()
-    
-    return render(request, 'manageApp/index.html',{'memberLst':memberLst})
+    memNum = memberLst.count()
+    context = {'memberLst':memberLst, 'memNum':memNum}
+    return render(request, 'manageApp/index.html', context)

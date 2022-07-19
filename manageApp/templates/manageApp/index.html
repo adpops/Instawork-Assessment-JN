@@ -1,1 +1,11 @@
-<p>{{member.getRole()}}</p>
+<h1>Team Members</h1>
+{%if memNum > 0 %}
+    <h2>You have {{memNum}} team members</h2>
+    <ul>
+    {%for member in memberLst%}
+        <li>{{member.firstName}} {{member.lastName}}</li>
+    {%endfor%}
+    </ul>
+{%else%}
+    <p>You have no team members</p>
+{%endif%}
