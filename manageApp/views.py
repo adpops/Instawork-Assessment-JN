@@ -6,3 +6,9 @@ def index(request):
     memNum = memberLst.count()
     context = {'memberLst':memberLst, 'memNum':memNum}
     return render(request, 'manageApp/index.html', context)
+
+def add(request, memberId):
+    return render(request, 'manageApp/add.html',)
+
+def edit(request, memberId):
+    return render(request, 'manageApp/edit.html')
