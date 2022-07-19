@@ -1,6 +1,6 @@
 <h1>Team Members</h1>
 {%if memNum > 0 %}
-    <h2>You have {{memNum}} team members</h2>
+    <h2>You have {{memNum}} team member{{memNum|pluralize}}</h2>
     <ul>
     {%for member in memberLst%}
         <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}}</li>
