@@ -1,5 +1,5 @@
 {{error_msg}}
-<form action="{%url 'manageApp:add' %}" method='post'>
+<form action="{%url 'manageApp:add' 0 %}" method='post'>
     {% csrf_token %}
     {{form}}
     <input type="submit" value="Save">

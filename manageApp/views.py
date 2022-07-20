@@ -9,7 +9,7 @@ def index(request):
     context = {'memberLst':memberLst, 'memNum':memNum}
     return render(request, 'manageApp/index.html', context)
 
-def add(request):
+def add(request, isEdit):
     if(request.method == 'POST'):
         form = MemberForm(request.POST)
         if(form.is_valid()):
@@ -17,6 +17,8 @@ def add(request):
             memberLst = TeamMember.objects.all()
             for mem in memberLst:
                 if(mem.checkDuplicate(form)):
+                    if(isEdit):
+                        return HttpResponseRedirect('/') 
                     error_msg = "Team Member already exists"
                     return render(request, 'manageApp/add.html', {'form': form, 'error_msg': error_msg})
         

@@ -1,5 +1,5 @@
-<form action="{%url 'manageApp:add'%}" method='post'>
+<form action="{%url 'manageApp:add' 1 %}" method='post'>
     {% csrf_token %}
     {{form}}
-    <input type="submit" value="OK">
+    <input type="submit" value="Save">
 </form>
