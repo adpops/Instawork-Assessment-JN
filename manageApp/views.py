@@ -13,19 +13,32 @@ def add(request):
     if(request.method == 'POST'):
         form = MemberForm(request.POST)
         if(form.is_valid()):
+            
+            memberLst = TeamMember.objects.all()
+            for mem in memberLst:
+                if(mem.checkDuplicate(form)):
+                    error_msg = "Team Member already exists"
+                    return render(request, 'manageApp/add.html', {'form': form, 'error_msg': error_msg})
+        
             member = TeamMember(firstName=form.cleaned_data['firstName'], lastName=form.cleaned_data['lastName'], 
             email=form.cleaned_data['email'], phoneNum=form.cleaned_data['phoneNum'], role=form.cleaned_data['role'])
             member.save()
             return HttpResponseRedirect('/')
     else:
         form = MemberForm()
-    return render(request, 'manageApp/add.html', {'form': form})
+    error_msg = ""
+    return render(request, 'manageApp/add.html', {'form': form, 'error_msg': error_msg})
 
 def edit(request, pk):
-    # member = get_object_or_404(TeamMember, pk=pk)
-    # context = {'member':member}
-    # return render(request, 'manageApp/edit.html', context)
-    form = MemberForm()
+    member = get_object_or_404(TeamMember, pk=pk)
+    data = {
+        'firstName': member.firstName,
+        'lastName': member.lastName,
+        'email': member.email,
+        'phoneNum': member.phoneNum,
+        'role': member.role
+        }
+    form = MemberForm(data)    
     return render(request, 'manageApp/edit.html', {'form':form})
 
 def update(request):
