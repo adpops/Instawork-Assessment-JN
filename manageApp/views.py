@@ -1,5 +1,5 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from .models import TeamMember
@@ -26,9 +26,7 @@ class AddView(CreateView):
     model = TeamMember
     fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
     template_name = 'manageApp/add.html'
-    
-    def get_success_url(self):
-        return "/"
+    success_url = "/"
 
 # def add(request, isEdit):
 #     if(request.method == 'POST'):
@@ -52,14 +50,25 @@ class AddView(CreateView):
 #     error_msg = ""
 #     return render(request, 'manageApp/add.html', {'form': form, 'error_msg': error_msg})
 
-def edit(request, pk):
-    member = get_object_or_404(TeamMember, pk=pk)
-    data = {
-        'firstName': member.firstName,
-        'lastName': member.lastName,
-        'email': member.email,
-        'phoneNum': member.phoneNum,
-        'role': member.role
-        }
-    form = MemberForm(data)    
-    return render(request, 'manageApp/edit.html', {'form':form})
+class EditView(UpdateView):
+    model = TeamMember
+    fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
+    template_name = 'manageApp/edit.html'
+    success_url = "/"
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)    
+    #     context['memNum'] = context['memberLst'].count()
+    #     return context
+    
+# def edit(request, pk):
+#     member = get_object_or_404(TeamMember, pk=pk)
+#     data = {
+#         'firstName': member.firstName,
+#         'lastName': member.lastName,
+#         'email': member.email,
+#         'phoneNum': member.phoneNum,
+#         'role': member.role
+#         }
+#     form = MemberForm(data)    
+#     return render(request, 'manageApp/edit.html', {'form':form})

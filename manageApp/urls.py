@@ -5,5 +5,5 @@ app_name = 'manageApp'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('add/', views.AddView.as_view(), name='add'),
-    path('<int:pk>/', views.edit, name='edit'),
+    path('<int:pk>/', views.EditView.as_view(), name='edit'),
 ]    

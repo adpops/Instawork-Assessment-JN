@@ -1,4 +1,4 @@
-<form action="{%url 'manageApp:add' 1 %}" method='post'>
+<form method='post'>
     {% csrf_token %}
     {{form}}
     <input type="submit" value="Save">
