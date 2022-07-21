@@ -1,7 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 import phonenumbers
 import re
 from .models import TeamMember
@@ -33,16 +33,11 @@ class AddView(CreateView):
     def post(self, request, *args, **kwargs):
         form = MemberForm(request.POST)
         if(form.is_valid()):
-            phoneNum = "+1" + form.cleaned_data['phoneNum']
-            if(not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
-                errorMsg = "Please input a valid phone number"
-            elif(not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", form.cleaned_data['email'])):
-                errorMsg = "Please input a valid email address"
-            else:
+            errorMsg = TeamMember.checkValid(form)
+            if(errorMsg == ""):
                 member = form.save()
                 member.save()        
                 return HttpResponseRedirect('/') 
-        # errorMsg = "Please input valid values"
         return render(request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
 
 # def add(request, isEdit):
