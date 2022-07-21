@@ -5,7 +5,7 @@ class TeamMember(models.Model):
     firstName = models.CharField(max_length=255)
     lastName = models.CharField(max_length=255)
     email = models.EmailField()
-    phoneNum = PhoneNumberField()
+    phoneNum = models.CharField(max_length=16)
     role = models.BooleanField()
     
     # return 'Regular' if false, 'Admin is true'
