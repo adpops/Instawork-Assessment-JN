@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 import phonenumbers
+import re
 from .models import TeamMember
 from .forms import MemberForm
 
@@ -35,23 +36,14 @@ class AddView(CreateView):
             phoneNum = "+1" + form.cleaned_data['phoneNum']
             if(not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
                 errorMsg = "Please input a valid phone number"
-                return render(request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})
-            
-            member = TeamMember(firstName=form.cleaned_data['firstName'], lastName=form.cleaned_data['lastName'], 
-            email=form.cleaned_data['email'], phoneNum=form.cleaned_data['phoneNum'], role=form.cleaned_data['role'])
-            member.save()        
-            return HttpResponseRedirect('/') 
-        errorMsg = "Please input valid values"
-        return render(request, 'manageApp/add.html', {'form': form, 'error_msg': errorMsg})
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     phoneNum = self.object['phoneNum']    
-    #     # phoneNum = "+1604-828-0483"
-    #     if(not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
-    #         context['errorMsg'] = "Please input a valid phone number"
-    #     return context
-        
+            elif(not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", form.cleaned_data['email'])):
+                errorMsg = "Please input a valid email address"
+            else:
+                member = form.save()
+                member.save()        
+                return HttpResponseRedirect('/') 
+        # errorMsg = "Please input valid values"
+        return render(request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
 
 # def add(request, isEdit):
 #     if(request.method == 'POST'):
@@ -80,11 +72,6 @@ class EditView(UpdateView):
     fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
     template_name = 'manageApp/edit.html'
     success_url = "/"
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)    
-    #     context['memNum'] = context['memberLst'].count()
-    #     return context
     
 # def edit(request, pk):
 #     member = get_object_or_404(TeamMember, pk=pk)

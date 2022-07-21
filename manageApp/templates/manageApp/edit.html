@@ -1,5 +1,7 @@
+<h1>Edit team member</h1>
+<h3>Edit contact info, location, and role</h3>
 <form method='post'>
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
     <input type="submit" value="Save">
 </form>

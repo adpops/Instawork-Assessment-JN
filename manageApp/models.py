@@ -4,7 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class TeamMember(models.Model):
     firstName = models.CharField(max_length=255)
     lastName = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.CharField(max_length=255)
     phoneNum = models.CharField(max_length=16)
     role = models.BooleanField()
     

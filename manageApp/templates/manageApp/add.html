@@ -1,6 +1,8 @@
-{{errorMsg}}
+<h1>Add a team member</h1>
+<h3>Set location, email, and role</h3>
+<h4>{{errorMsg}}</h4>
 <form action="{%url 'manageApp:add' %}" method='post'>
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
     <input type="submit" value="Save">
 </form>
