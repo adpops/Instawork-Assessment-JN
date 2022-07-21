@@ -35,7 +35,7 @@ class AddView(CreateView):
             phoneNum = "+1" + form.cleaned_data['phoneNum']
             if(not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
                 errorMsg = "Please input a valid phone number"
-                return render(request, 'manageApp/add.html', {'form': form, 'error_msg': errorMsg})
+                return render(request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})
             
             member = TeamMember(firstName=form.cleaned_data['firstName'], lastName=form.cleaned_data['lastName'], 
             email=form.cleaned_data['email'], phoneNum=form.cleaned_data['phoneNum'], role=form.cleaned_data['role'])
