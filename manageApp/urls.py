@@ -3,8 +3,7 @@ from . import views
 
 app_name = 'manageApp'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('add/<int:isEdit>', views.add, name='add'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('add/', views.AddView.as_view(), name='add'),
     path('<int:pk>/', views.edit, name='edit'),
-    path('update/', views.update, name='update')
 ]    
