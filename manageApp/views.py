@@ -1,6 +1,6 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic.edit import CreateView, UpdateView
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from .models import TeamMember
 from .forms import MemberForm
@@ -87,13 +87,7 @@ class EditView(UpdateView):
 #     form = MemberForm(data)    
 #     return render(request, 'manageApp/edit.html', {'form':form})
 
-# class DeleteView(DeleteView):
-#     model
-
 def delete(request, pk):
     member = get_object_or_404(TeamMember, pk=pk)
     member.delete()
-    memberLst = TeamMember.objects.all()
-    memNum = memberLst.count()
-    context = {'memberLst':memberLst, 'memNum':memNum}
-    return render(request, 'manageApp/index.html', context)
+    return HttpResponseRedirect('/')
