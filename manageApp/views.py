@@ -70,20 +70,10 @@ class EditView(UpdateView):
             return super().form_valid(form)
         return render(self.request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)    
-    #     context['id'] = self.object.id
-    #     return context
-    
-    # def post(self, request, *args, **kwargs):
-    #     form = MemberForm(request.POST)
-    #     if(form.is_valid()):
-    #         errorMsg = TeamMember.checkValid(form)
-    #         if(errorMsg == ""):
-    #             member = form.save()
-    #             member.save()        
-    #             return HttpResponseRedirect('/') 
-    #     return render(request, 'manageApp/edit.html', {'form': form, 'errorMsg': errorMsg})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)    
+        context['id'] = self.object.id
+        return context
     
 # def edit(request, pk):
 #     member = get_object_or_404(TeamMember, pk=pk)
@@ -103,4 +93,7 @@ class EditView(UpdateView):
 def delete(request, pk):
     member = get_object_or_404(TeamMember, pk=pk)
     member.delete()
-    IndexView
+    memberLst = TeamMember.objects.all()
+    memNum = memberLst.count()
+    context = {'memberLst':memberLst, 'memNum':memNum}
+    return render(request, 'manageApp/index.html', context)
