@@ -1,9 +1,7 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-import phonenumbers
-import re
+from django.shortcuts import get_object_or_404, render
 from .models import TeamMember
 from .forms import MemberForm
 
@@ -30,15 +28,12 @@ class AddView(CreateView):
     template_name = 'manageApp/add.html'
     success_url = "/"
     
-    def post(self, request, *args, **kwargs):
-        form = MemberForm(request.POST)
-        if(form.is_valid()):
-            errorMsg = TeamMember.checkValid(form)
-            if(errorMsg == ""):
-                member = form.save()
-                member.save()        
-                return HttpResponseRedirect('/') 
-        return render(request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
+    def form_valid(self, form):
+        errorMsg = TeamMember.checkValid(form)
+        if(errorMsg == ""):
+            self.object = form.save()        
+            return super().form_valid(form)
+        return render(self.request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
 
 # def add(request, isEdit):
 #     if(request.method == 'POST'):
@@ -68,6 +63,28 @@ class EditView(UpdateView):
     template_name = 'manageApp/edit.html'
     success_url = "/"
     
+    def form_valid(self, form):
+        errorMsg = TeamMember.checkValid(form)
+        if(errorMsg == ""):
+            self.object.save(force_update=True)
+            return super().form_valid(form)
+        return render(self.request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)    
+    #     context['id'] = self.object.id
+    #     return context
+    
+    # def post(self, request, *args, **kwargs):
+    #     form = MemberForm(request.POST)
+    #     if(form.is_valid()):
+    #         errorMsg = TeamMember.checkValid(form)
+    #         if(errorMsg == ""):
+    #             member = form.save()
+    #             member.save()        
+    #             return HttpResponseRedirect('/') 
+    #     return render(request, 'manageApp/edit.html', {'form': form, 'errorMsg': errorMsg})
+    
 # def edit(request, pk):
 #     member = get_object_or_404(TeamMember, pk=pk)
 #     data = {
@@ -79,3 +96,11 @@ class EditView(UpdateView):
 #         }
 #     form = MemberForm(data)    
 #     return render(request, 'manageApp/edit.html', {'form':form})
+
+# class DeleteView(DeleteView):
+#     model
+
+def delete(request, pk):
+    member = get_object_or_404(TeamMember, pk=pk)
+    member.delete()
+    IndexView
