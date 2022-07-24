@@ -4,7 +4,19 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from .models import TeamMember
 from .forms import MemberForm
+import phonenumbers
+import re
 
+
+def checkValid(form):
+    errorMsg = ""
+    phoneNum = "+1" + form.cleaned_data['phoneNum']
+    email = form.cleaned_data['email']
+    if(len(phoneNum) <= 3 or not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
+            errorMsg = "Please input a valid phone number"
+    elif(not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email)):
+        errorMsg = "Please input a valid email address"
+    return errorMsg
 
 class IndexView(ListView):
     model = TeamMember
@@ -29,7 +41,7 @@ class AddView(CreateView):
     success_url = "/"
     
     def form_valid(self, form):
-        errorMsg = TeamMember.checkValid(form)
+        errorMsg = checkValid(form)
         if(errorMsg == ""):
             self.object = form.save()        
             return super().form_valid(form)
@@ -64,7 +76,7 @@ class EditView(UpdateView):
     success_url = "/"
     
     def form_valid(self, form):
-        errorMsg = TeamMember.checkValid(form)
+        errorMsg = checkValid(form)
         if(errorMsg == ""):
             self.object.save(force_update=True)
             return super().form_valid(form)
