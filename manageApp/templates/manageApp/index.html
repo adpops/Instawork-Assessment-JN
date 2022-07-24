@@ -3,7 +3,7 @@
     <h3>You have {{memNum}} team member{{memNum|pluralize}}</h3>
     <ul>
     {%for member in memberLst%}
-        <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}}</li>
+        <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}} {%if member.role == True %} (admin) {%endif%}</li>
     {%endfor%}
     </ul>
 {%else%}
