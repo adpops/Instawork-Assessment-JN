@@ -1,15 +1,12 @@
 from .models import TeamMember
-from django.forms import ModelForm, CheckboxSelectMultiple
+from django.forms import ModelForm, RadioSelect, Select
 
-CHOICES = [
-    ('regular', 'Regular'),
-    ('admin', 'Admin'),
-]
-
+CHOICES = [('r', "Regular - Can't delete members"),
+    ('a', "Admin - Can delete members")]
 class MemberForm(ModelForm):    
     class Meta:
         model = TeamMember 
         fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
         widgets = {
-            'role': CheckboxSelectMultiple(choices=CHOICES,),
+            'role': RadioSelect(choices=CHOICES,),
         }
