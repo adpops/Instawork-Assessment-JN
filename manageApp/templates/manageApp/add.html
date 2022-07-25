@@ -30,6 +30,8 @@
         {{form.role.errors}}
         {{form.role.label_tag}}
         {{form.role}}
+        {% comment %} <p><label for="{{ form.error.id_for_label }}">Regular - Can't delete members</label> {{form.role}}</p>
+        <p><label for="{{ form.error.id_for_label }}">Admin - Can delete members</label> {{form.role}}</p> {% endcomment %}
     </p>
     <input type="submit" value="Save">
 </form>

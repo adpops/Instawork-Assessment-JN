@@ -36,7 +36,8 @@ class IndexView(ListView):
 
 class AddView(CreateView):
     model = TeamMember
-    fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
+    # fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
+    form_class = MemberForm
     template_name = 'manageApp/add.html'
     success_url = "/"
     
