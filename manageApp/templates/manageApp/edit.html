@@ -3,7 +3,36 @@
 <h4>{{errorMsg}}</h4>
 <form method='post'>
     {% csrf_token %}
-    {{form.as_p}}
+    <p> {{ form.non_field_errors }} </p>
+    <h2> Info </h2>
+    <p>
+        {{form.firstName.errors}}
+        {{form.firstName.label_tag}}
+        {{form.firstName}}
+    </p>
+    <p>
+        {{form.lastName.errors}}
+        {{form.lastName.label_tag}}
+        {{form.lastName}}
+    </p>
+    <p>
+        {{form.email.errors}}
+        {{form.email.label_tag}}
+        {{form.email}}
+    </p>
+    <p>
+        {{form.phoneNum.errors}}
+        {{form.phoneNum.label_tag}}
+        {{form.phoneNum}}
+    </p>
+    <h2> Role </h2>
+    <p>
+        {{form.role.errors}}
+        {{form.role.label_tag}}
+        {{form.role}}
+        {% comment %} <p><label for="{{ form.error.id_for_label }}">Regular - Can't delete members</label> {{form.role}}</p>
+        <p><label for="{{ form.error.id_for_label }}">Admin - Can delete members</label> {{form.role}}</p> {% endcomment %}
+    </p>
     <input type="submit" value="Save">
 </form>
 <a href="{%url 'manageApp:delete' id%}"> 

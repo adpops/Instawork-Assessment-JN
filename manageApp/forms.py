@@ -1,10 +1,13 @@
 from .models import TeamMember
-from django.forms import ModelForm, RadioSelect, Select
+from django.forms import ModelForm, RadioSelect
 
-CHOICES = [('r', "Regular - Can't delete members"),
-    ('a', "Admin - Can delete members")]
 class MemberForm(ModelForm):    
     class Meta:
+        CHOICES = [
+            ('r', "Regular - Can't delete members"),
+            ('a', "Admin - Can delete members"),
+        ]
+        
         model = TeamMember 
         fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
         widgets = {

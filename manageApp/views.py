@@ -72,7 +72,7 @@ class AddView(CreateView):
 
 class EditView(UpdateView):
     model = TeamMember
-    fields = ['firstName', 'lastName', 'email', 'phoneNum', 'role']
+    form_class = MemberForm
     template_name = 'manageApp/edit.html'
     success_url = "/"
     
@@ -81,7 +81,7 @@ class EditView(UpdateView):
         if(errorMsg == ""):
             self.object.save(force_update=True)
             return super().form_valid(form)
-        return render(self.request, 'manageApp/add.html', {'form': form, 'errorMsg': errorMsg})        
+        return render(self.request, 'manageApp/edit.html', {'form': form, 'errorMsg': errorMsg})        
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)    
