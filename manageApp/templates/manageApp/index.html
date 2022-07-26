@@ -9,9 +9,8 @@
     <body>
         <h1 id='title'>List Page</h1>
         <div id='main'>
-            <div id='heading'>
+            <header>
                 <a id ='btn' href="{%url 'manageApp:add'%}"> 
-                    {% comment %} <input type="submit" value="Add"> {% endcomment %}
                     <i class='bx bx-plus' ></i>
                 </a>
                 <h2>Team Members</h2>
@@ -21,7 +20,7 @@
                     <p>You have no team members</p>
                 {%endif%}
                 <hr>
-            </div>
+            </header>
             <div id='content-index'>
                 <ul>
                     {%for member in memberLst%}

@@ -7,7 +7,7 @@ body {
 #title {
     display: flex;
     justify-content: center;
-    width: 25.5vw;
+    min-width: 25.5vw;
 
     background: grey;
     padding: 0.5vw;
@@ -16,7 +16,7 @@ body {
 }
 
 #main {
-    width: 25vw;
+    min-width: 25vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,8 +24,8 @@ body {
     border-radius: 2px;
 }
 
-#heading { width: 23vw; }
-#heading #btn {
+header { min-width: 23vw; }
+header #btn {
     display: flex;
     justify-content: flex-end;
     margin-top: 5px;
@@ -37,10 +37,10 @@ body {
     font-weight: thin;
 }
 
-#heading h2{
+header h2{
     margin: 5px 0px 0px 0px;    
 }
-#heading p{
+header p{
     margin: 2px 0px 0px 0px;    
     color: silver;
 }
@@ -50,7 +50,7 @@ a {
     text-decoration: none;
 } 
 
-#content-index { width: 23vw; }
+#content-index { min-width: 23vw; }
 
 #content-index ul { padding: 0px; margin: 2px}
 
