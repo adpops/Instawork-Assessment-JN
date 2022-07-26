@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Team Management App</title>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'manageApp/style.css' %}"> 
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <title>Team Management App</title>
     </head>
     <body>
-        <h1>Team Members</h1>
-        {%if memNum > 0 %}
-            <h3>You have {{memNum}} team member{{memNum|pluralize}}</h3>
-            <ul>
-            {%for member in memberLst%}
-                <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}} {%if member.role == 'a' %} (admin) {%endif%}</li>
-            {%endfor%}
-            </ul>
-        {%else%}
-            <h3>You have no team members</h3>
-        {%endif%}
-        <a href="{%url 'manageApp:add'%}"> 
-            <input type="submit" value="Add">
-        </a>
+        <h1 id='title'>List Page</h1>
+        <div id='main'>
+            <div id='heading'>
+                <a id ='btn' href="{%url 'manageApp:add'%}"> 
+                    {% comment %} <input type="submit" value="Add"> {% endcomment %}
+                    <i class='bx bx-plus' ></i>
+                </a>
+                <h2>Team Members</h2>
+                {%if memNum > 0 %}
+                    <p>You have {{memNum}} team member{{memNum|pluralize}}</p>
+                {%else%}
+                    <p>You have no team members</p>
+                {%endif%}
+                <hr>
+            </div>
+            <div id='content-index'>
+                <ul>
+                    {%for member in memberLst%}
+                        <a href="{% url 'manageApp:edit' member.id %}">
+                            <div id='display-users'>
+                                <i class='bx bxs-user-circle'></i>
+                                <div id='users'>
+                                    <p id='name'>{{member.firstName}} {{member.lastName}} 
+                                        {%if member.role == 'a' %} (admin) 
+                                        {%endif%}
+                                    </p>
+                                    <div id='info'>
+                                        <p>{{member.phoneNum}}</p>
+                                        <p>{{member.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <hr>
+                    {%endfor%}
+                </ul>
+            </div>
+        </div>
     </body>
-</html>    
+</html>
+
+
+{% comment %} <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>     {% endcomment %}
