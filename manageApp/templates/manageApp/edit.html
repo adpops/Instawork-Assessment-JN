@@ -1,45 +1,51 @@
-<h1>Edit team member</h1>
-<h3>Edit contact info, location, and role</h3>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Team Members</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'manageApp/style.css' %}"> 
+    </head>
+    <body>
+        <h1>Edit team member</h1>
+        <h3>Edit contact info, location, and role</h3>
 
-{% comment %} {{id | pprint}} {% endcomment %}
-
-<form action="{%url 'manageApp:edit' id%}" method='post'>
-    {% csrf_token %}
-    <p> {{ form.non_field_errors }} </p>
-    <h2> Info </h2>
-    <p>
-        {{form.firstName.errors}}
-        {{form.firstName.label_tag}}
-        {{form.firstName}}
-    </p>
-    <p>
-        {{form.lastName.errors}}
-        {{form.lastName.label_tag}}
-        {{form.lastName}}
-    </p>
-    <p>
-        {{form.email.errors}}
-        {{form.email.label_tag}}
-        {{form.email}}
-    </p>
-    {%if errorMsg|length > 0%}
-        <ul><li>{{errorMsg}}</li></ul> 
-    {%endif%}
-    <p>
-        {{form.phoneNum.errors}}
-        {{form.phoneNum.label_tag}}
-        {{form.phoneNum}}
-    </p>
-    <h2> Role </h2>
-    <p>
-        {{form.role.errors}}
-        {{form.role.label_tag}}
-        {{form.role}}
-        {% comment %} <p><label for="{{ form.error.id_for_label }}">Regular - Can't delete members</label> {{form.role}}</p>
-        <p><label for="{{ form.error.id_for_label }}">Admin - Can delete members</label> {{form.role}}</p> {% endcomment %}
-    </p>
-    <input type="submit" value="Save">
-</form>
-<a href="{%url 'manageApp:delete' id%}"> 
-    <input type="submit" value="Delete">
-</a>
+        <form action="{%url 'manageApp:edit' id%}" method='post'>
+            {% csrf_token %}
+            <p> {{ form.non_field_errors }} </p>
+            <h2> Info </h2>
+            <p>
+                {{form.firstName.errors}}
+                {{form.firstName.label_tag}}
+                {{form.firstName}}
+            </p>
+            <p>
+                {{form.lastName.errors}}
+                {{form.lastName.label_tag}}
+                {{form.lastName}}
+            </p>
+            <p>
+                {{form.email.errors}}
+                {{form.email.label_tag}}
+                {{form.email}}
+            </p>
+            {%if errorMsg|length > 0%}
+                <ul><li>{{errorMsg}}</li></ul> 
+            {%endif%}
+            <p>
+                {{form.phoneNum.errors}}
+                {{form.phoneNum.label_tag}}
+                {{form.phoneNum}}
+            </p>
+            <h2> Role </h2>
+            <p>
+                {{form.role.errors}}
+                {{form.role.label_tag}}
+                {{form.role}}
+            </p>
+            <input type="submit" value="Save">
+        </form>
+        <a href="{%url 'manageApp:delete' id%}"> 
+            <input type="submit" value="Delete">
+        </a>
+    </body>
+</html>

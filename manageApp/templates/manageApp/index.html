@@ -1,15 +1,24 @@
-<h1>Team Members</h1>
-{%if memNum > 0 %}
-    <h3>You have {{memNum}} team member{{memNum|pluralize}}</h3>
-    <ul>
-    {%for member in memberLst%}
-        <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}} {%if member.role == 'a' %} (admin) {%endif%}</li>
-    {%endfor%}
-    </ul>
-{%else%}
-    <h3>You have no team members</h3>
-{%endif%}
-
-<a href="{%url 'manageApp:add'%}"> 
-    <input type="submit" value="Add">
-</a>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Team Management App</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'manageApp/style.css' %}"> 
+    </head>
+    <body>
+        <h1>Team Members</h1>
+        {%if memNum > 0 %}
+            <h3>You have {{memNum}} team member{{memNum|pluralize}}</h3>
+            <ul>
+            {%for member in memberLst%}
+                <li><a href="{% url 'manageApp:edit' member.id %}">{{member.firstName}} {{member.lastName}} {%if member.role == 'a' %} (admin) {%endif%}</li>
+            {%endfor%}
+            </ul>
+        {%else%}
+            <h3>You have no team members</h3>
+        {%endif%}
+        <a href="{%url 'manageApp:add'%}"> 
+            <input type="submit" value="Add">
+        </a>
+    </body>
+</html>    
