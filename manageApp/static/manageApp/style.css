@@ -7,11 +7,12 @@ body {
 #title {
     display: flex;
     justify-content: center;
-    width: 26vw;
+    width: 25.5vw;
 
     background: grey;
     padding: 0.5vw;
-    margin: 2px
+    margin: 2px;
+    border-radius: 2px;
 }
 
 #main {
@@ -19,7 +20,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1vw solid grey;
+    border: 0.75vw solid grey;
+    border-radius: 2px;
 }
 
 #heading { width: 23vw; }
@@ -32,6 +34,7 @@ body {
 #btn i {
     font-size: 30px;
     color: lightblue;
+    font-weight: thin;
 }
 
 #heading h2{
@@ -49,7 +52,7 @@ a {
 
 #content-index { width: 23vw; }
 
-#content-index ul { padding: 0px; }
+#content-index ul { padding: 0px; margin: 2px}
 
 #display-users {
     display: flex;
@@ -57,6 +60,7 @@ a {
 #display-users i{
     font-size: 40px;
     margin-right: 10px;
+    color:grey;
 }
 
 #users {
@@ -71,5 +75,5 @@ a {
 #info p{
     color: silver;
     font-size: 13px;
-    margin: 3px 0px 0px 0px;
+    margin: 3px 0px 3px 0px;
 }
