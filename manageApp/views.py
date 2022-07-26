@@ -11,11 +11,8 @@ import re
 def checkValid(form):
     errorMsg = ""
     phoneNum = "+1" + form.cleaned_data['phoneNum']
-    email = form.cleaned_data['email']
     if(len(phoneNum) <= 3 or not phonenumbers.is_valid_number(phonenumbers.parse(phoneNum))):
-            errorMsg = "Please input a valid phone number"
-    elif(not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email)):
-        errorMsg = "Please input a valid email address"
+            errorMsg = "Please enter a valid phone number"
     return errorMsg
 
 class IndexView(ListView):
