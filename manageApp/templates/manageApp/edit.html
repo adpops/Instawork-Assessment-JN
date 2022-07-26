@@ -1,7 +1,9 @@
 <h1>Edit team member</h1>
 <h3>Edit contact info, location, and role</h3>
-<h4>{{errorMsg}}</h4>
-<form method='post'>
+
+{% comment %} {{id | pprint}} {% endcomment %}
+
+<form action="{%url 'manageApp:edit' id%}" method='post'>
     {% csrf_token %}
     <p> {{ form.non_field_errors }} </p>
     <h2> Info </h2>
@@ -20,6 +22,9 @@
         {{form.email.label_tag}}
         {{form.email}}
     </p>
+    {%if errorMsg|length > 0%}
+        <ul><li>{{errorMsg}}</li></ul> 
+    {%endif%}
     <p>
         {{form.phoneNum.errors}}
         {{form.phoneNum.label_tag}}

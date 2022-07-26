@@ -78,11 +78,11 @@ class EditView(UpdateView):
         if(errorMsg == ""):
             self.object.save(force_update=True)
             return super().form_valid(form)
-        return render(self.request, 'manageApp/edit.html', {'form': form, 'errorMsg': errorMsg})        
+        return render(self.request, 'manageApp/edit.html', {'form': form, 'errorMsg': errorMsg, 'id':self.kwargs['pk']})        
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)    
-        context['id'] = self.object.id
+        context['id'] = self.kwargs['pk']
         return context
     
 # def edit(request, pk):

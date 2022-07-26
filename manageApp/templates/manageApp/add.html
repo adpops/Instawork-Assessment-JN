@@ -21,7 +21,7 @@
         {{form.email}}
     </p>
     {%if errorMsg|length > 0%}
-        <ul><li>{{errorMsg}}</li></ul> 
+        <ul><li>{{errorMsg}}</li></ul>
     {%endif%}
     <p>
         {{form.phoneNum.errors}}
@@ -38,3 +38,6 @@
     </p>
     <input type="submit" value="Save">
 </form>
+<a href="{%url 'manageApp:index'%}"> 
+    <input type="submit" value="Back">
+</a>
