@@ -21,25 +21,25 @@
                 {%endif%}
                 <hr>
             </header>
-            <div id='content-index'>
+            <div id='content'>
                 <ul>
-                    {%for member in memberLst%}
-                        <a href="{% url 'manageApp:edit' member.id %}">
-                            <div id='display-users'>
-                                <i class='bx bxs-user-circle'></i>
-                                <div id='users'>
-                                    <p id='name'>{{member.firstName}} {{member.lastName}} 
-                                        {%if member.role == 'a' %} (admin) 
-                                        {%endif%}
-                                    </p>
-                                    <div id='info'>
-                                        <p>{{member.phoneNum}}</p>
-                                        <p>{{member.email}}</p>
-                                    </div>
+                {%for member in memberLst%}
+                    <a href="{% url 'manageApp:edit' member.id %}">
+                        <div id='display-users'>
+                            <i class='bx bxs-user-circle'></i>
+                            <div id='users'>
+                                <p id='name'>{{member.firstName}} {{member.lastName}} 
+                                    {%if member.role == 'a' %} (admin) 
+                                    {%endif%}
+                                </p>
+                                <div id='info'>
+                                    <p>{{member.phoneNum}}</p>
+                                    <p>{{member.email}}</p>
                                 </div>
                             </div>
-                        <hr>
-                    {%endfor%}
+                        </div>
+                    <hr>
+                {%endfor%}
                 </ul>
             </div>
         </div>

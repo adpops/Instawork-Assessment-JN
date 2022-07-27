@@ -22,9 +22,10 @@ body {
     align-items: center;
     border: 0.75vw solid grey;
     border-radius: 2px;
+    padding-bottom: 15px;
 }
 
-header { min-width: 23vw; }
+header { min-width: 20vw; }
 header #btn {
     display: flex;
     justify-content: flex-end;
@@ -50,12 +51,13 @@ a {
     text-decoration: none;
 } 
 
-#content-index { min-width: 23vw; }
+#content { min-width: 20vw; }
 
-#content-index ul { padding: 0px; margin: 2px}
+#content ul { padding: 0px; margin: 2px}
 
 #display-users {
     display: flex;
+    padding-top: 10px;
 }
 #display-users i{
     font-size: 40px;
@@ -76,4 +78,60 @@ a {
     color: silver;
     font-size: 13px;
     margin: 3px 0px 3px 0px;
+}
+
+form p form p input[type="text"]{
+    display: flex;
+    justify-content: center;
+}
+
+form p input[type="text"], form p input[type="email"]{
+    min-height: 30px;
+    min-width: 250px;
+    width: 23vw;
+    color: silver;
+}
+form p input[type="text"]:focus {color:black}
+
+#radio {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0px;
+}
+h3 {
+    margin: 0px;    
+}
+
+#btns {
+    display:flex;
+    justify-content: space-around;
+}
+/* 
+#btns input[type="submit"] {
+    background-color: transparent;
+    border: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    margin-top: 1.5rem;
+    width: 100%; 
+} */
+
+/* CSS */
+#btns input[type="submit"]{
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  background-color: lightblue;
 }
