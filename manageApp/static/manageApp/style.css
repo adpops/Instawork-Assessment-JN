@@ -91,7 +91,7 @@ form p input[type="text"], form p input[type="email"]{
     width: 23vw;
     color: silver;
 }
-form p input[type="text"]:focus {color:black}
+form p input[type="text"]:focus, form p input[type="email"]:focus {color:black}
 
 #radio {
     display: flex;
