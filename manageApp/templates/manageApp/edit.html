@@ -6,52 +6,57 @@
         <title>Edit Team Members</title>        
     </head>
     <body>
-        <h1>Edit team member</h1>
-        <h3>Edit contact info, location, and role</h3>
-        <div id='content'>
-            <form id='val-form' action="{%url 'manageApp:add' %}" method='post'>
-                {% csrf_token %}
-                <p> {{ form.non_field_errors }} </p>
-                <h3> Info </h3>
-                <p>
-                    {{form.firstName.errors}}
-                    &#160;
-                    {{form.firstName}}
-                </p>
-                <p>
-                    {{form.lastName.errors}}
-                    &#160;
-                    {{form.lastName}}
-                </p>
-                <p>
-                    {{form.email.errors}}
-                    &#160;
-                    {{form.email}}
-                </p>
-                {%if errorMsg|length > 0%}
-                    <ul><li>{{errorMsg}}</li></ul>
-                {%endif%}
-                <p>
-                    {{form.phoneNum.errors}}
-                    &#160;
-                    {{form.phoneNum}}
-                </p>
-                <h3> Role </h3>
-                <p id='radio'>
-                    {{form.role.errors}}
-                    {%for role in form.role%}
-                        <p >
-                            {{role}}
-                            <hr>
-                        </p>
-                    {%endfor%}
-                </p>
-            </form>
-            <div id='btns'>
-                <input form='val-form' type="submit" value="Save">
-                <a href="{%url 'manageApp:delete' id%}"> 
-                    <input type="submit" value="Delete">
-                </a>
+        <h1 id='title'>Edit Page</h1>
+        <div id='main'>
+            <header>
+                <h2>Edit team member</h2>
+                <p>Edit contact info, location, and role</p>
+            </header>
+            <div id='content'>
+                <form id='val-form' action="{%url 'manageApp:edit' id %}" method='post'>
+                    {% csrf_token %}
+                    <p> {{ form.non_field_errors }} </p>
+                    <h3> Info </h3>
+                    <p>
+                        {{form.firstName.errors}}
+                        &#160;
+                        {{form.firstName}}
+                    </p>
+                    <p>
+                        {{form.lastName.errors}}
+                        &#160;
+                        {{form.lastName}}
+                    </p>
+                    <p>
+                        {{form.email.errors}}
+                        &#160;
+                        {{form.email}}
+                    </p>
+                    {%if errorMsg|length > 0%}
+                        <ul class='errorlist'><li>{{errorMsg}}</li></ul>
+                    {%endif%}
+                    <p>
+                        {{form.phoneNum.errors}}
+                        &#160;
+                        {{form.phoneNum}}
+                    </p>
+                    <h3> Role </h3>
+                    <p id='radio'>
+                        {{form.role.errors}}
+                        {%for role in form.role%}
+                            <p >
+                                {{role}}
+                                <hr>
+                            </p>
+                        {%endfor%}
+                    </p>
+                </form>
+                <div id='btns'>
+                    <input form='val-form' type="submit" value="Save">
+                    <a href="{%url 'manageApp:delete' id%}"> 
+                        <input type="submit" value="Delete">
+                    </a>
+                </div>
             </div>
         </div>
     </body>
