@@ -6,8 +6,8 @@ class TeamMember(models.Model):
         ('r', "Regular - Can't delete members"),
         ('a', "Admin - Can delete members"),
     ]
-    firstName = models.CharField(max_length=255, default='First Name')
-    lastName = models.CharField(max_length=255, default='Last Name')
-    email = models.EmailField(unique=True, default='Email')
-    phoneNum = models.CharField(max_length=16, unique=True, default='Phone Number')
+    firstName = models.CharField(max_length=255)
+    lastName = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    phoneNum = models.CharField(max_length=16, unique=True)
     role = models.CharField(max_length=1, choices=CHOICES, default='r')
