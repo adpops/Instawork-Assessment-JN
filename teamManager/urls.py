@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('manageApp.urls')),
+    path('', include('manageApp.urls')), # set manageApp as root directory
     path('admin/', admin.site.urls),
 ]

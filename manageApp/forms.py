@@ -2,6 +2,7 @@ from django import forms
 from .models import TeamMember
 from django.forms import ModelForm, RadioSelect
 
+# Form that will generate fields based on TeamMember
 class MemberForm(ModelForm):    
     class Meta:
         CHOICES = [

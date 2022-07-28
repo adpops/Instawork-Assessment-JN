@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 app_name = 'manageApp'
+# Routes that map onto the classes in view.py
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('add/', views.AddView.as_view(), name='add'),
